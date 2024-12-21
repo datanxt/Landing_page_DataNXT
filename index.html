@@ -7,60 +7,70 @@
   <link rel="stylesheet" href="styles.css">
   <script>
     function loadChatbot() {
-      // Add the "chat-active" class to the body
+      // First, add the chat-active class to body
       document.body.classList.add('chat-active');
       
-      // Smooth transition of main logo, name, and tagline
+      // Get all the elements we need to animate
       const mainLogo = document.querySelector('.main-logo');
       const mainTitle = document.querySelector('.main-title');
       const mainTagline = document.querySelector('.main-tagline');
-      const headerTagline = document.querySelector('.header-tagline');
-      
-      mainLogo.classList.add('move-to-header');
-      mainTitle.classList.add('move-to-header-title');
-      mainTagline.classList.add('move-to-header-tagline');
-      headerTagline.classList.remove('hidden');
-      
-      // Hide the "Try Now" button
       const tryNowBtn = document.querySelector('.sign-in-button');
+      
+      // Add the morphing classes
+      requestAnimationFrame(() => {
+        mainLogo.classList.add('move-to-header');
+        mainTitle.classList.add('move-to-header-title');
+        mainTagline.classList.add('move-to-header-tagline');
+      });
+      
+      // Hide the button
       tryNowBtn.style.opacity = '0';
       tryNowBtn.style.pointerEvents = 'none';
       
-      // Wait for the morphing animation to finish, then show the chatbot
+      // Create and add the chatbot iframe after animation
       setTimeout(() => {
         const chatbotContainer = document.createElement('iframe');
         chatbotContainer.src = "https://chat.datanxt.de";
         chatbotContainer.classList.add('chatbot-iframe');
         chatbotContainer.title = "DataNXT Chatbot";
         chatbotContainer.setAttribute('aria-label', 'Chat with DataNXT support');
+        
+        // Add iframe to body
         document.body.appendChild(chatbotContainer);
-      }, 1200);
+        
+        // Make iframe visible after a short delay
+        setTimeout(() => {
+          chatbotContainer.style.opacity = '1';
+        }, 100);
+      }, 1000); // Reduced timing to make it snappier
     }
     
     function closeChatbot() {
-      // Remove the "chat-active" class
-      document.body.classList.remove('chat-active');
-      
-      // Revert the main logo, name, and tagline position
+      // Get elements
       const mainLogo = document.querySelector('.main-logo');
       const mainTitle = document.querySelector('.main-title');
       const mainTagline = document.querySelector('.main-tagline');
-      const headerTagline = document.querySelector('.header-tagline');
+      const tryNowBtn = document.querySelector('.sign-in-button');
+      const chatbotIframe = document.querySelector('.chatbot-iframe');
       
+      // Remove morphing classes
       mainLogo.classList.remove('move-to-header');
       mainTitle.classList.remove('move-to-header-title');
       mainTagline.classList.remove('move-to-header-tagline');
-      headerTagline.classList.add('hidden');
       
-      // Show the "Try Now" button
-      const tryNowBtn = document.querySelector('.sign-in-button');
+      // Show button
       tryNowBtn.style.opacity = '1';
       tryNowBtn.style.pointerEvents = 'auto';
       
-      // Remove the chatbot iframe
-      const chatbotIframe = document.querySelector('.chatbot-iframe');
+      // Remove chat-active class
+      document.body.classList.remove('chat-active');
+      
+      // Remove iframe if it exists
       if (chatbotIframe) {
-        chatbotIframe.remove();
+        chatbotIframe.style.opacity = '0';
+        setTimeout(() => {
+          chatbotIframe.remove();
+        }, 500);
       }
     }
   </script>
@@ -76,8 +86,8 @@
     <main class="main-content">
       <img src="DataNXT_icon_raw.png" alt="DataNXT Logo" class="main-logo">
       <h1 class="main-title">DataNXT</h1>
-      <button class="sign-in-button" onclick="loadChatbot()">Try Now</button>
       <p class="main-tagline">The best place for financial analysis, fast, smart, and reliable.</p>
+      <button class="sign-in-button" onclick="loadChatbot()">Try Now</button>
     </main>
   </div>
 </body>

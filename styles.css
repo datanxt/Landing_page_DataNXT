@@ -50,15 +50,15 @@ body {
   justify-content: center;
   position: relative;
   padding: 20px;
+  min-height: 100vh;
 }
 
-/* Logo Styling */
+/* Logo styling */
 .main-logo {
   width: 250px;
   height: 250px;
   position: relative;
-  margin-bottom: 20px;
-  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
 }
 
@@ -68,46 +68,43 @@ body {
   left: 20px;
   width: 60px;
   height: 60px;
-  margin: 0;
 }
 
-/* Title Styling */
+/* Title styling */
 .main-title {
   font-size: 4rem;
   color: #0070c9;
   margin: 20px 0;
-  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
 }
 
 .main-title.move-to-header-title {
   position: fixed;
-  top: 15px; /* Positioned above the tagline */
-  left: 100px; /* Positioned next to the logo */
+  top: 15px;
+  left: 100px;
   font-size: 1.8rem;
   margin: 0;
 }
 
-/* Tagline Styling */
+/* Tagline styling */
 .main-tagline {
   font-size: 1.5rem;
   color: #0070c9;
   text-align: center;
-  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
 }
 
 .main-tagline.move-to-header-tagline {
   position: fixed;
-  top: 45px; /* Positioned below the title */
-  left: 100px; /* Aligned with the title */
+  top: 45px;
+  left: 100px;
   font-size: 0.9rem;
-  margin: 0;
-  opacity: 1;
   white-space: nowrap;
 }
 
-/* Button Styling */
+/* Button styling */
 .sign-in-button {
   background-color: #0070c9;
   color: white;
@@ -117,11 +114,11 @@ body {
   font-size: 1.2rem;
   cursor: pointer;
   margin: 20px 0;
-  transition: opacity 0.6s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   z-index: 10;
 }
 
-/* Chatbot Iframe */
+/* Chatbot iframe */
 .chatbot-iframe {
   position: fixed;
   top: 80px;
@@ -130,7 +127,7 @@ body {
   height: calc(100vh - 80px);
   border: none;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   z-index: 4;
 }
 
@@ -138,7 +135,10 @@ body.chat-active .chatbot-iframe {
   opacity: 1;
 }
 
-/* Hide original header tagline as we're morphing the main one */
-.header-tagline {
-  display: none;
+/* Initial positions for elements */
+.main-logo,
+.main-title,
+.main-tagline {
+  transform: translate3d(0, 0, 0); /* Force GPU acceleration */
+  will-change: transform, width, height, font-size; /* Optimize animations */
 }
