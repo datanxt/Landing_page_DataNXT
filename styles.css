@@ -46,7 +46,7 @@ body {
 /* Logo styling */
 .main-logo {
   position: absolute;
-  top: 45%; /* Adjusted from 50% to move it slightly higher */
+  top: 40%; /* Moved higher */
   left: 50%;
   transform: translate(-50%, -50%);
   width: 250px;
@@ -55,65 +55,10 @@ body {
   z-index: 10;
 }
 
-
-.main-logo.move-to-header {
-  position: fixed;
-  top: 10px;
-  left: 20px;
-  transform: none;
-  width: 60px;
-  height: 60px;
-}
-
-/* Title styling */
-.main-title {
-  position: absolute;
-  top: calc(45% + 140px); /* Adjusted to align with the new logo position */
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 4rem;
-  color: #0070c9;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 10;
-  margin: 0;
-  text-align: center;
-}
-
-.main-title.move-to-header-title {
-  position: fixed;
-  top: 15px;
-  left: 100px;
-  transform: none;
-  font-size: 1.8rem;
-}
-
-/* Tagline styling */
-.main-tagline {
-  position: absolute;
-  top: calc(45% + 220px); /* Adjusted to align with the new logo position */
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.5rem;
-  color: #0070c9;
-  text-align: center;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 10;
-  white-space: nowrap;
-}
-
-
-.main-tagline.move-to-header-tagline {
-  position: fixed;
-  top: 45px;
-  left: 100px;
-  transform: none;
-  font-size: 0.9rem;
-} 
-
-/* Button styling */
+/* Button stays centered */
 .sign-in-button {
   position: absolute;
-  top: 50%; /* Center vertically */
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #0070c9;
@@ -126,6 +71,66 @@ body {
   transition: opacity 0.3s ease-in-out;
   z-index: 10;
 }
+
+/* Title styling */
+.main-title {
+  position: absolute;
+  top: calc(60%); /* Adjusted position */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 4rem;
+  color: #0070c9;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  margin: 0;
+  text-align: center;
+}
+
+/* Tagline styling */
+.main-tagline {
+  position: absolute;
+  top: calc(60% + 80px); /* Adjusted to maintain spacing with title */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  color: #0070c9;
+  text-align: center;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.main-logo.move-to-header {
+  position: fixed;
+  top: 10px;
+  left: 20px;
+  transform: none;
+  width: 60px;
+  height: 60px;
+}
+
+
+
+.main-title.move-to-header-title {
+  position: fixed;
+  top: 15px;
+  left: 100px;
+  transform: none;
+  font-size: 1.8rem;
+}
+
+
+
+
+.main-tagline.move-to-header-tagline {
+  position: fixed;
+  top: 45px;
+  left: 100px;
+  transform: none;
+  font-size: 0.9rem;
+} 
+
+
 
 
 
