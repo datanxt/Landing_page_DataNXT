@@ -9,23 +9,23 @@
     function loadChatbot() {
       // Add the "chat-active" class to the body
       document.body.classList.add('chat-active');
-
+  
       // Move the paragraph into the header
       const header = document.querySelector('.header');
       const tagline = document.querySelector('.main-content p');
       header.appendChild(tagline);
-
+  
       // Hide the "Try Now" button
       const tryNowBtn = document.querySelector('.sign-in-button');
       tryNowBtn.style.display = 'none';
-
+  
       // Hide the icon and title
       const iconSection = document.querySelector('.icon-section');
       iconSection.style.display = 'none';
-
+  
       const mainTitle = document.querySelector('.main-content h1');
       mainTitle.style.display = 'none';
-
+  
       // Create and insert the chatbot iframe
       const chatbotContainer = document.createElement('iframe');
       chatbotContainer.src = "https://chat.datanxt.de";
@@ -34,12 +34,51 @@
       chatbotContainer.setAttribute('aria-label', 'Chat with DataNXT support'); // Accessibility
       document.body.appendChild(chatbotContainer);
     }
+  
+    function closeChatbot() {
+      // Remove the "chat-active" class
+      document.body.classList.remove('chat-active');
+  
+      // Move the tagline back to the main content
+      const header = document.querySelector('.header');
+      const tagline = header.querySelector('p');
+      const mainContent = document.querySelector('.main-content');
+      mainContent.appendChild(tagline);
+  
+      // Show the "Try Now" button
+      const tryNowBtn = document.querySelector('.sign-in-button');
+      tryNowBtn.style.display = 'inline-block';
+  
+      // Show the icon and title
+      const iconSection = document.querySelector('.icon-section');
+      iconSection.style.display = 'flex';
+  
+      const mainTitle = document.querySelector('.main-content h1');
+      mainTitle.style.display = 'block';
+  
+      // Remove the chatbot iframe
+      const chatbotIframe = document.querySelector('.chatbot-iframe');
+      if (chatbotIframe) {
+        chatbotIframe.remove();
+      }
+    }
+  
+    function toggleChatbot() {
+      if (document.body.classList.contains('chat-active')) {
+        closeChatbot();
+      } else {
+        // Optional: Reload the page or do nothing
+        // location.reload(); // Uncomment to reload the page
+      }
+    }
   </script>
+  
 </head>
 <body>
   <header class="header">
-    <img src="DataNXT_logo_raw.png" alt="DataNXT Logo" class="logo">
+    <img src="DataNXT_logo_raw.png" alt="DataNXT Logo" class="logo" onclick="toggleChatbot()">
   </header>
+  
 
   <div class="container">
     <main class="main-content">
