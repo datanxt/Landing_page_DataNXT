@@ -33,25 +33,6 @@ body {
   z-index: 10;
 }
 
-.header-left {
-  display: flex;
-  align-items: center;
-}
-
-.header-tagline {
-  font-size: 1rem;
-  color: #0070c9;
-  margin-left: 15px;
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-}
-
-body.chat-active .header-tagline {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* Main Content Styling */
 .container {
   display: flex;
@@ -71,7 +52,7 @@ body.chat-active .header-tagline {
   width: 250px;
   height: 250px;
   transition: all 1.2s ease-in-out;
-  z-index: 1;
+  z-index: 20; /* Ensure above header */
 }
 
 .move-to-header {
@@ -89,6 +70,7 @@ body.chat-active .header-tagline {
   color: #0070c9;
   opacity: 1;
   transition: all 1.2s ease-in-out;
+  z-index: 20; /* Ensure above header */
 }
 
 .move-to-header-title {
@@ -110,6 +92,7 @@ body.chat-active .header-tagline {
   transform: translate(-50%, -50%);
   opacity: 1;
   transition: all 1.2s ease-in-out;
+  z-index: 20; /* Ensure above header */
 }
 
 .move-to-header-tagline {
