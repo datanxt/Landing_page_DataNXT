@@ -13,8 +13,11 @@ body {
   position: relative;
 }
 
-/* Header */
+/* Header initially hidden */
 .header {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
   position: fixed;
   top: 0;
   left: 0;
@@ -146,21 +149,22 @@ body.chat-active .chatbot-iframe {
   opacity: 1;
 }
 
+
+/* Make logo clickable only when chatbot is active */
+body.chat-active .main-logo {
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Header visible when chat-active is added to body */
+body.chat-active .header {
+  opacity: 1;
+  visibility: visible;
+}
 /* Force hardware acceleration */
 .main-logo,
 .main-title,
 .main-tagline {
   will-change: transform, width, height, font-size;
   backface-visibility: hidden;
-}
-
-/* Make logo clickable only when chatbot is active */
-.main-logo {
-  cursor: default;
-  pointer-events: none;
-}
-
-body.chat-active .main-logo {
-  cursor: pointer;
-  pointer-events: auto;
 }
