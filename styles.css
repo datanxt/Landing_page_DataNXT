@@ -110,3 +110,30 @@
     background-color: #0070c9;
     transform: scale(1.05); /* Subtle hover effect */
 }
+
+/* Transition the header so it slides to the top nicely */
+.header {
+  transition: all 0.5s ease-in-out;
+}
+
+/* When the page is in "chat mode", we can style or hide certain elements */
+.chat-active .main-content,
+.chat-active .icon-section {
+  opacity: 0;
+  pointer-events: none; /* So you cannot click on hidden elements */
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* We might move the paragraph and logo differently in chat mode */
+.chat-active .header {
+  position: fixed;    /* pinned at the top */
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* left align items in the header */
+  gap: 20px;
+  padding: 10px 20px;
+  z-index: 1000;
+  background: #f9f9f9; /* optionally add a background */
+}
