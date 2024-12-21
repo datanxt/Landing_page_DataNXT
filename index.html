@@ -10,9 +10,11 @@
       // Add the "chat-active" class to the body
       document.body.classList.add('chat-active');
 
-      // Ensure smooth transition of main logo
+      // Smooth transition of main logo and tagline
       const mainLogo = document.querySelector('.main-logo');
+      const mainTagline = document.querySelector('.main-tagline');
       mainLogo.classList.add('move-to-header');
+      mainTagline.classList.add('move-to-header-tagline');
 
       // Hide the "Try Now" button
       const tryNowBtn = document.querySelector('.sign-in-button');
@@ -32,9 +34,11 @@
       // Remove the "chat-active" class
       document.body.classList.remove('chat-active');
 
-      // Revert the main logo position
+      // Revert the main logo and tagline position
       const mainLogo = document.querySelector('.main-logo');
+      const mainTagline = document.querySelector('.main-tagline');
       mainLogo.classList.remove('move-to-header');
+      mainTagline.classList.remove('move-to-header-tagline');
 
       // Show the "Try Now" button
       const tryNowBtn = document.querySelector('.sign-in-button');
@@ -52,7 +56,7 @@
 <body>
   <header class="header">
     <h1 class="header-title">DataNXT</h1>
-    <p class="header-tagline hidden">The best place for financial analysis, fast, smart, and reliable.</p>
+    <p class="header-tagline">The best place for financial analysis, fast, smart, and reliable.</p>
   </header>
 
   <div class="container">
