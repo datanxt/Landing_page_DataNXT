@@ -56,20 +56,6 @@ body {
   cursor: pointer;
 }
 
-/* Title styling */
-.main-title {
-  position: absolute;
-  top: calc(45%); /* Moved higher */
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 4rem;
-  color: #0070c9;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 10;
-  margin: 0;
-  text-align: center;
-}
-
 /* Button styling */
 .sign-in-button {
   position: absolute;
@@ -87,10 +73,24 @@ body {
   z-index: 10;
 }
 
+/* Title styling */
+.main-title {
+  position: absolute;
+  top: calc(60%); /* Adjusted position */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 4rem;
+  color: #0070c9;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  margin: 0;
+  text-align: center;
+}
+
 /* Tagline styling */
 .main-tagline {
   position: absolute;
-  top: calc(45% + 80px); /* Adjusted spacing relative to new title position */
+  top: calc(60% + 80px); /* Adjusted to maintain spacing with title */
   left: 50%;
   transform: translateX(-50%);
   font-size: 1.5rem;
