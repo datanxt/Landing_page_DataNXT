@@ -46,16 +46,31 @@ body {
 /* Logo styling */
 .main-logo {
   position: absolute;
-  top: 40%; /* Moved higher */
+  top: 30%; /* Moved higher */
   left: 50%;
   transform: translate(-50%, -50%);
   width: 250px;
   height: 250px;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
+  cursor: pointer;
 }
 
-/* Button stays centered */
+/* Title styling */
+.main-title {
+  position: absolute;
+  top: calc(45%); /* Moved higher */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 4rem;
+  color: #0070c9;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  margin: 0;
+  text-align: center;
+}
+
+/* Button styling */
 .sign-in-button {
   position: absolute;
   top: 50%;
@@ -72,24 +87,10 @@ body {
   z-index: 10;
 }
 
-/* Title styling */
-.main-title {
-  position: absolute;
-  top: calc(60%); /* Adjusted position */
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 4rem;
-  color: #0070c9;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 10;
-  margin: 0;
-  text-align: center;
-}
-
 /* Tagline styling */
 .main-tagline {
   position: absolute;
-  top: calc(60% + 80px); /* Adjusted to maintain spacing with title */
+  top: calc(45% + 80px); /* Adjusted spacing relative to new title position */
   left: 50%;
   transform: translateX(-50%);
   font-size: 1.5rem;
@@ -117,8 +118,8 @@ body {
   left: 100px;
   transform: none;
   font-size: 1.8rem;
+  content: "DataNXT Equity"; /* This won't work directly - see JavaScript below */
 }
-
 
 
 

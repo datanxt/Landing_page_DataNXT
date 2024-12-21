@@ -16,12 +16,13 @@
       const mainTagline = document.querySelector('.main-tagline');
       const tryNowBtn = document.querySelector('.sign-in-button');
       
-      // Add the morphing classes
-      requestAnimationFrame(() => {
-        mainLogo.classList.add('move-to-header');
-        mainTitle.classList.add('move-to-header-title');
-        mainTagline.classList.add('move-to-header-tagline');
-      });
+       // Add the morphing classes
+  requestAnimationFrame(() => {
+    mainLogo.classList.add('move-to-header');
+    mainTitle.classList.add('move-to-header-title');
+    mainTitle.textContent = 'DataNXT Equity'; // Add this line
+    mainTagline.classList.add('move-to-header-tagline');
+  });
       
       // Hide the button
       tryNowBtn.style.opacity = '0';
@@ -32,7 +33,7 @@
         const chatbotContainer = document.createElement('iframe');
         chatbotContainer.src = "https://chat.datanxt.de";
         chatbotContainer.classList.add('chatbot-iframe');
-        chatbotContainer.title = "DataNXT Chatbot";
+        chatbotContainer.title = "DataNXT Equity";
         chatbotContainer.setAttribute('aria-label', 'Chat with DataNXT support');
         
         // Add iframe to body
@@ -54,9 +55,10 @@
       const chatbotIframe = document.querySelector('.chatbot-iframe');
       
       // Remove morphing classes
-      mainLogo.classList.remove('move-to-header');
-      mainTitle.classList.remove('move-to-header-title');
-      mainTagline.classList.remove('move-to-header-tagline');
+  mainLogo.classList.remove('move-to-header');
+  mainTitle.classList.remove('move-to-header-title');
+  mainTitle.textContent = 'DataNXT'; // Add this line
+  mainTagline.classList.remove('move-to-header-tagline');
       
       // Show button
       tryNowBtn.style.opacity = '1';
