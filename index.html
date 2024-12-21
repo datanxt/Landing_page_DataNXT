@@ -7,24 +7,25 @@
   <link rel="stylesheet" href="styles.css">
   <script>
     function loadChatbot() {
-      // Move content to the top
-      const header = document.querySelector('.header');
-      const mainContent = document.querySelector('.main-content');
-      header.style.position = 'fixed';
-      header.style.top = '0';
-      header.style.width = '100%';
-      header.style.zIndex = '1000';
-      
-      mainContent.style.marginTop = '100px';
-      mainContent.style.transition = 'all 0.5s ease-in-out';
+      // 1) Add the "chat-active" class to body or container
+      document.body.classList.add('chat-active');
 
-      // Load chatbot
+      // 2) Move the paragraph into the header
+      const header = document.querySelector('.header');
+      const tagline = document.querySelector('.main-content p');
+      header.appendChild(tagline);
+
+      // 3) Hide the "Try Now" button
+      const tryNowBtn = document.querySelector('.sign-in-button');
+      tryNowBtn.style.display = 'none';
+
+      // 4) Create and insert the chatbot iframe
       const chatbotContainer = document.createElement('iframe');
       chatbotContainer.src = "https://chat.datanxt.de";
       chatbotContainer.style.width = '100%';
       chatbotContainer.style.height = '80vh';
       chatbotContainer.style.border = 'none';
-      chatbotContainer.style.marginTop = '20px';
+      chatbotContainer.style.marginTop = '120px'; // so it appears below the fixed header
       document.body.appendChild(chatbotContainer);
     }
   </script>
@@ -33,6 +34,7 @@
   <header class="header">
     <img src="DataNXT_logo_raw.png" alt="DataNXT Logo" class="logo">
   </header>
+
   <div class="container">
     <main class="main-content">
       <div class="icon-section">
