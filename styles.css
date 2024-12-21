@@ -40,12 +40,13 @@ body {
   justify-content: center;
   padding: 20px;
   position: relative;
+  margin-top: -80px; /* This will move the content up */
 }
 
-/* Logo styling with absolute positioning */
+/* Logo styling */
 .main-logo {
   position: absolute;
-  top: 50%;
+  top: 45%; /* Adjusted from 50% to move it slightly higher */
   left: 50%;
   transform: translate(-50%, -50%);
   width: 250px;
@@ -53,6 +54,7 @@ body {
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
 }
+
 
 .main-logo.move-to-header {
   position: fixed;
@@ -63,10 +65,10 @@ body {
   height: 60px;
 }
 
-/* Title styling with absolute positioning */
+/* Title styling */
 .main-title {
   position: absolute;
-  top: calc(50% + 140px); /* Position below logo */
+  top: calc(45% + 140px); /* Adjusted to align with the new logo position */
   left: 50%;
   transform: translateX(-50%);
   font-size: 4rem;
@@ -74,6 +76,7 @@ body {
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
   margin: 0;
+  text-align: center;
 }
 
 .main-title.move-to-header-title {
@@ -84,10 +87,10 @@ body {
   font-size: 1.8rem;
 }
 
-/* Tagline styling with absolute positioning */
+/* Tagline styling */
 .main-tagline {
   position: absolute;
-  top: calc(50% + 220px); /* Position below title */
+  top: calc(45% + 220px); /* Adjusted to align with the new logo position */
   left: 50%;
   transform: translateX(-50%);
   font-size: 1.5rem;
@@ -98,6 +101,7 @@ body {
   white-space: nowrap;
 }
 
+
 .main-tagline.move-to-header-tagline {
   position: fixed;
   top: 45px;
@@ -106,12 +110,12 @@ body {
   font-size: 0.9rem;
 } 
 
-/* Button styling: Move directly below the logo */
+/* Button styling */
 .sign-in-button {
   position: absolute;
-  top: calc(50% + 105px); /* Adjust this value to place it right below the logo */
+  top: 50%; /* Center vertically */
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   background-color: #0070c9;
   color: white;
   border: none;
