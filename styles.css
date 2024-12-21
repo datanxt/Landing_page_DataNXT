@@ -32,6 +32,7 @@ body {
   padding-top: 80px;
 }
 
+/* Center the main content and move higher */
 .main-content {
   flex: 1;
   display: flex;
@@ -40,6 +41,8 @@ body {
   justify-content: center;
   padding: 20px;
   position: relative;
+  top: -50px; /* Moves everything higher */
+  transform: translateY(-50px); /* Adjust this value if needed */
 }
 
 /* Logo styling with absolute positioning */
