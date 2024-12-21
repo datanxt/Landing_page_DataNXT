@@ -10,10 +10,12 @@
       // Add the "chat-active" class to the body
       document.body.classList.add('chat-active');
 
-      // Smooth transition of main logo and tagline
+      // Smooth transition of main logo, name, and tagline
       const mainLogo = document.querySelector('.main-logo');
+      const mainTitle = document.querySelector('.main-title');
       const mainTagline = document.querySelector('.main-tagline');
       mainLogo.classList.add('move-to-header');
+      mainTitle.classList.add('move-to-header-title');
       mainTagline.classList.add('move-to-header-tagline');
 
       // Hide the "Try Now" button
@@ -21,23 +23,27 @@
       tryNowBtn.style.opacity = '0';
       tryNowBtn.style.pointerEvents = 'none';
 
-      // Create and insert the chatbot iframe
-      const chatbotContainer = document.createElement('iframe');
-      chatbotContainer.src = "https://chat.datanxt.de";
-      chatbotContainer.classList.add('chatbot-iframe');
-      chatbotContainer.title = "DataNXT Chatbot"; // Accessibility
-      chatbotContainer.setAttribute('aria-label', 'Chat with DataNXT support'); // Accessibility
-      document.body.appendChild(chatbotContainer);
+      // Wait for the morphing animation to finish, then show the chatbot
+      setTimeout(() => {
+        const chatbotContainer = document.createElement('iframe');
+        chatbotContainer.src = "https://chat.datanxt.de";
+        chatbotContainer.classList.add('chatbot-iframe');
+        chatbotContainer.title = "DataNXT Chatbot"; // Accessibility
+        chatbotContainer.setAttribute('aria-label', 'Chat with DataNXT support'); // Accessibility
+        document.body.appendChild(chatbotContainer);
+      }, 1200); // Wait for 1.2 seconds (morphing duration)
     }
 
     function closeChatbot() {
       // Remove the "chat-active" class
       document.body.classList.remove('chat-active');
 
-      // Revert the main logo and tagline position
+      // Revert the main logo, name, and tagline position
       const mainLogo = document.querySelector('.main-logo');
+      const mainTitle = document.querySelector('.main-title');
       const mainTagline = document.querySelector('.main-tagline');
       mainLogo.classList.remove('move-to-header');
+      mainTitle.classList.remove('move-to-header-title');
       mainTagline.classList.remove('move-to-header-tagline');
 
       // Show the "Try Now" button
@@ -55,8 +61,10 @@
 </head>
 <body>
   <header class="header">
-    <h1 class="header-title">DataNXT</h1>
-    <p class="header-tagline">The best place for financial analysis, fast, smart, and reliable.</p>
+    <div class="header-left">
+      <!-- Logo and Title will appear here -->
+    </div>
+    <p class="header-tagline hidden">The best place for financial analysis, fast, smart, and reliable.</p>
   </header>
 
   <div class="container">
