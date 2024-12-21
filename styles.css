@@ -10,218 +10,123 @@ body {
   font-family: 'Arial', sans-serif;
   background-color: #f9f9f9;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   min-height: 100vh;
   padding: 0;
-  position: relative; /* For absolute positioning inside */
-  overflow: hidden; /* Prevent scrollbars during animation */
-  transition: all 0.5s ease-in-out;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Header Styling */
 .header {
-  position: absolute; /* Fixed position at the top */
-  top: 20px;
-  left: 20px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  z-index: 10;
-  transition: all 0.5s ease-in-out;
-}
-
-.header .header-logo {
-  width: 100px;
-  height: auto;
-  cursor: pointer; /* Indicate it's clickable */
-  transition: opacity 0.5s ease-in-out;
-}
-
-.header-title,
-.header-tagline {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-  position: absolute;
-  left: 120px; /* Position next to the logo */
-}
-
-body.chat-active .header-logo {
-  opacity: 0; /* Fade out the header logo */
-}
-
-body.chat-active .header-title,
-body.chat-active .header-tagline {
-  opacity: 1; /* Fade in title and tagline */
-  transform: translateY(0); /* Move into place */
-}
-
-/* Container and Main Content Styling */
-.container {
+  justify-content: flex-start;
+  padding: 20px;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 800px;
-  text-align: center;
-  transition: all 0.5s ease-in-out;
-  position: relative; /* For positioning main-logo */
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
-.main-content {
+.header-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0070c9;
+  margin-left: 15px;
+}
+
+.header-tagline {
+  font-size: 1rem;
+  color: #0070c9;
+  margin-left: 15px;
+}
+
+/* Main Content Styling */
+.container {
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-  position: relative;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
 }
 
 .main-logo {
-  position: absolute; /* Absolute positioning for animation */
+  position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Center the logo */
+  transform: translate(-50%, -50%);
   width: 350px;
   height: 350px;
-  object-fit: contain;
-  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
   transition: all 0.5s ease-in-out;
-  z-index: 5; /* Ensure it's above main content */
 }
 
-body.chat-active .main-logo {
-  top: 20px; /* Move to header's top position */
+.move-to-header {
+  position: fixed;
+  top: 20px;
   left: 20px;
-  transform: translate(0, 0); /* Align with header's position */
-  width: 100px; /* Resize the logo */
-  height: 100px;
+  transform: translate(0, 0);
+  width: 60px;
+  height: 60px;
 }
 
 .main-title {
-  font-size: 7.1rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-top: 50px;
-  margin-bottom: 20px;
+  font-size: 4rem;
+  margin-top: 20px;
   color: #0070c9;
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 
 body.chat-active .main-title {
-  opacity: 0; /* Fade out the main title */
-  transform: translateY(-20px);
+  opacity: 0;
 }
 
 .main-tagline {
-  font-size: 2.6rem;
-  font-weight: 400;
-  line-height: 1.1;
+  font-size: 1.5rem;
   color: #0070c9;
-  margin-bottom: 100px;
-  margin-top: 20px;
-  max-width: 600px;
-  text-align: center;
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  margin: 20px 0;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 
 body.chat-active .main-tagline {
-  opacity: 0; /* Fade out the main tagline */
-  transform: translateY(-20px);
+  opacity: 0;
 }
 
 .sign-in-button {
   background-color: #0070c9;
-  color: #ffffff;
-  border-radius: 30px;
-  padding: 10px 40px;
-  font-size: 1.6rem;
+  color: white;
   border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.5s ease-in-out;
-  margin-top: 20px;
-  z-index: 5; /* Ensure it's above main content */
+  transition: opacity 0.5s ease-in-out;
 }
 
 body.chat-active .sign-in-button {
-  opacity: 0; /* Fade out the button */
-  pointer-events: none; /* Disable button interactions */
+  opacity: 0;
 }
 
-.sign-in-button:hover {
-  background-color: #005fa3; /* Darker shade on hover */
-  transform: scale(1.05);
-}
-
-/* Chatbot Iframe Styling */
+/* Chatbot Iframe */
 .chatbot-iframe {
-  position: absolute;
-  top: 80px; /* Below the header */
+  position: fixed;
+  top: 80px;
   left: 0;
   width: 100%;
   height: calc(100vh - 80px);
   border: none;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-  z-index: 4; /* Below main-logo */
+  transition: opacity 0.5s ease-in-out;
 }
 
 body.chat-active .chatbot-iframe {
   opacity: 1;
-  visibility: visible;
-}
-
-/* Animations When Chat is Active */
-body.chat-active .main-content {
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .header {
-      top: 10px;
-      left: 10px;
-  }
-
-  .header .header-logo {
-      width: 80px;
-  }
-
-  .header-title {
-      font-size: 1.5rem;
-  }
-
-  .header-tagline {
-      font-size: 1rem;
-  }
-
-  .main-logo {
-      width: 250px;
-      height: 250px;
-  }
-
-  body.chat-active .main-logo {
-      top: 10px;
-      left: 10px;
-      width: 80px;
-      height: 80px;
-  }
-
-  .main-title {
-      font-size: 4rem;
-  }
-
-  .main-tagline {
-      font-size: 1.6rem;
-  }
-
-  .sign-in-button {
-      font-size: 1.4rem;
-      padding: 8px 30px;
-  }
-
-  .chatbot-iframe {
-      top: 70px;
-      height: calc(100vh - 70px);
-  }
 }
