@@ -1,4 +1,4 @@
-/* Reset and base styles remain the same */
+/* Reset and basic styles remain the same */
 * {
   margin: 0;
   padding: 0;
@@ -9,12 +9,11 @@ body {
   font-family: 'Arial', sans-serif;
   background-color: #f9f9f9;
   min-height: 100vh;
-  padding: 0;
-  position: relative;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* Header Styling */
+/* Header */
 .header {
   position: fixed;
   top: 0;
@@ -26,16 +25,7 @@ body {
   z-index: 5;
 }
 
-.header-content {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-}
-
-/* Main Content Styling */
+/* Main content container */
 .container {
   display: flex;
   min-height: 100vh;
@@ -48,16 +38,18 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
   padding: 20px;
-  min-height: 100vh;
+  position: relative;
 }
 
-/* Logo styling */
+/* Logo styling with absolute positioning */
 .main-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 250px;
   height: 250px;
-  position: relative;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
 }
@@ -66,50 +58,60 @@ body {
   position: fixed;
   top: 10px;
   left: 20px;
+  transform: none;
   width: 60px;
   height: 60px;
 }
 
-/* Title styling */
+/* Title styling with absolute positioning */
 .main-title {
+  position: absolute;
+  top: calc(50% + 140px); /* Position below logo */
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 4rem;
   color: #0070c9;
-  margin: 20px 0;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
+  margin: 0;
 }
 
 .main-title.move-to-header-title {
   position: fixed;
   top: 15px;
   left: 100px;
+  transform: none;
   font-size: 1.8rem;
-  margin: 0;
-  transform: translate(0, 0);
-  opacity: 1;
 }
 
-/* Tagline styling */
+/* Tagline styling with absolute positioning */
 .main-tagline {
+  position: absolute;
+  top: calc(50% + 220px); /* Position below title */
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 1.5rem;
   color: #0070c9;
   text-align: center;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
+  white-space: nowrap;
 }
 
 .main-tagline.move-to-header-tagline {
   position: fixed;
   top: 45px;
   left: 100px;
+  transform: none;
   font-size: 0.9rem;
-  white-space: nowrap;
-  transform: translate(0, 0);
-  opacity: 1;
 }
 
 /* Button styling */
 .sign-in-button {
+  position: absolute;
+  top: calc(50% + 300px); /* Position below tagline */
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #0070c9;
   color: white;
   border: none;
@@ -117,7 +119,6 @@ body {
   padding: 10px 20px;
   font-size: 1.2rem;
   cursor: pointer;
-  margin: 20px 0;
   transition: opacity 0.3s ease-in-out;
   z-index: 10;
 }
@@ -139,10 +140,10 @@ body.chat-active .chatbot-iframe {
   opacity: 1;
 }
 
-/* Initial positions for elements */
+/* Force hardware acceleration */
 .main-logo,
 .main-title,
 .main-tagline {
-  transform: translate3d(0, 0, 0); /* Force GPU acceleration */
-  will-change: transform, width, height, font-size; /* Optimize animations */
+  will-change: transform, width, height, font-size;
+  backface-visibility: hidden;
 }
