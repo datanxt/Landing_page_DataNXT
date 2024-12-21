@@ -5,11 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DataNXT</title>
   <link rel="stylesheet" href="styles.css">
+  <script>
+    function loadChatbot() {
+      // Move content to the top
+      const header = document.querySelector('.header');
+      const mainContent = document.querySelector('.main-content');
+      header.style.position = 'fixed';
+      header.style.top = '0';
+      header.style.width = '100%';
+      header.style.zIndex = '1000';
+      
+      mainContent.style.marginTop = '100px';
+      mainContent.style.transition = 'all 0.5s ease-in-out';
+
+      // Load chatbot
+      const chatbotContainer = document.createElement('iframe');
+      chatbotContainer.src = "https://chat.datanxt.de";
+      chatbotContainer.style.width = '100%';
+      chatbotContainer.style.height = '80vh';
+      chatbotContainer.style.border = 'none';
+      chatbotContainer.style.marginTop = '20px';
+      document.body.appendChild(chatbotContainer);
+    }
+  </script>
 </head>
 <body>
   <header class="header">
     <img src="DataNXT_logo_raw.png" alt="DataNXT Logo" class="logo">
-    <span></span>
   </header>
   <div class="container">
     <main class="main-content">
@@ -17,10 +39,8 @@
         <img src="DataNXT_icon_raw.png" alt="15x Improvement" class="icon">
       </div>
       <h1>DataNXT</h1>
-      <button class="sign-in-button">
-  <a href="https://chat.datanxt.de" target="_blank" style="text-decoration: none; color: inherit;">Try Now</a>
-</button>
-      <p>The best place for financial analysis, fast, smart and reliable.</p>
+      <button class="sign-in-button" onclick="loadChatbot()">Try Now</button>
+      <p>The best place for financial analysis, fast, smart, and reliable.</p>
     </main>
   </div>
 </body>
