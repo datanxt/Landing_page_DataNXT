@@ -53,7 +53,8 @@ body {
   height: 250px;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
-  cursor: pointer;
+  cursor: default;
+  pointer-events: none;
 }
 
 /* Button styling */
@@ -151,6 +152,12 @@ body {
 
 body.chat-active .chatbot-iframe {
   opacity: 1;
+}
+
+/* When chatbot is active: logo becomes clickable */
+body.chat-active .main-logo {
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 /* Force hardware acceleration */
