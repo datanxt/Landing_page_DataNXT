@@ -45,7 +45,7 @@ body {
 /* Logo styling with absolute positioning */
 .main-logo {
   position: absolute;
-  top: 40%; /* Moved from 50% to 40% to position higher */
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 250px;
@@ -66,7 +66,7 @@ body {
 /* Title styling with absolute positioning */
 .main-title {
   position: absolute;
-  top: calc(40% + 140px); /* Adjusted from 50% + 140px to 40% + 140px */
+  top: calc(50% + 140px); /* Position below logo */
   left: 50%;
   transform: translateX(-50%);
   font-size: 4rem;
@@ -87,7 +87,7 @@ body {
 /* Tagline styling with absolute positioning */
 .main-tagline {
   position: absolute;
-  top: calc(40% + 240px); /* Adjusted from 50% + 220px to 40% + 240px */
+  top: calc(50% + 220px); /* Position below title */
   left: 50%;
   transform: translateX(-50%);
   font-size: 1.5rem;
@@ -109,7 +109,7 @@ body {
 /* Button styling */
 .sign-in-button {
   position: absolute;
-  top: calc(40% + 180px); /* Moved to be between logo and tagline */
+  top: calc(50% + 300px); /* Position below tagline */
   left: 50%;
   transform: translateX(-50%);
   background-color: #0070c9;
@@ -146,9 +146,4 @@ body.chat-active .chatbot-iframe {
 .main-tagline {
   will-change: transform, width, height, font-size;
   backface-visibility: hidden;
-}
-
-/* Optional: Add cursor pointer to main-logo */
-.main-logo {
-  cursor: pointer;
 }
