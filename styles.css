@@ -1,139 +1,186 @@
 /* Reset styles for consistency */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Body and Container Styling */
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 0;
-  }
-  
-  .container {
-    width: 100%;
-    max-width: 800px;
-    text-align: center;
-  }
-  
- /* Header Styling */
- .header {
-    position: absolute; /* Keeps it positioned relative to the viewport */
-    top: -40px; /* Moves the header up */
-    left: -20px; /* Keeps it aligned to the left */
-    padding: 5px; /* Adjust padding if needed */
-    display: flex; /* Keep flexbox for alignment */
-    align-items: center; /* Vertically center content in header */
-    gap: 10px; /* Space between items */
-    z-index: 10; /* Ensure it stays on top of other elements */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.logo {
-    margin: 0; /* Remove any unintended margins */
-    padding: 0; /* Remove any unintended padding */
-    width: 200px; /* Size of the logo */
-    height: auto; /* Preserve aspect ratio */
-    object-fit: contain; /* Ensure the logo scales appropriately */
-}
-  
-  /* Main Content Styling */
-  .main-content {
-    margin-left: -20px; /* Shift content 30px to the left */
-    text-align: center; /* Keep content centered within its container */
-}
-  .main-content h1 {
-    font-size: 7.1rem; 
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-top: 250px; /* Add margin to move it down */
-    margin-bottom: 20px; /* Optional: Adjust spacing below */
-    color: #0070c9;
-  }
-  
-  .main-content p {
-    font-size: 2.6rem; /* Golden ratio for paragraph text */
-    font-weight: 400;
-    line-height: 1.5;
-    color: #0070c9;
-    margin-bottom: 100px;
-    line-height: 1.1;
-    margin-top: 50px; /* Add margin to move it down */
-    max-width: 600px; /* Set maximum width */
-    margin-left: auto; /* Center align the paragraph */
-    margin-right: auto; /* Center align the paragraph */
-    text-align: center; /* Optional: Center-align the text */
-  }
-  
-  .icon-section {
-    padding-bottom: 50px; /* Create space below the icon */
-    position: relative; /* Enables absolute positioning for children */
-    display: flex; /* Ensures proper layout */
-    justify-content: center; /* Horizontally centers the icon */
-    gap: 15px;
-    margin-bottom: 30px; /* Add spacing below the section */
-    max-width: none; /* No width restriction */
-    max-height: none; /* No height restriction */
-    overflow: visible; /* Prevent clipping */
+/* Body and Container Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0;
+  position: relative; /* Ensure positioning context */
 }
 
-.icon {
-    position: absolute; /* Allows precise control of the icon's position */
-    top: -70px; /* Moves the icon upward */
-    left: 50%; /* Centers the icon horizontally */
-    transform: translateX(-50%); /* Adjusts centering */
-    width: 350px; /* Icon width */
-    height: 350px; /* Icon height */
-    object-fit: contain; /* Maintains aspect ratio */
-    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
-}
-  
-  /* Button Styling */
-  .sign-in-button {
-    background-color: #0070c9;
-    color: #ffffff;
-    border-radius: 30px; /* Rounded pill shape */
-    padding: 10px 40px;
-    font-size: 1.6rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 20px; /* Add margin to move the button down */
+.container {
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
 }
 
-.sign-in-button:hover {
-    background-color: #0070c9;
-    transform: scale(1.05); /* Subtle hover effect */
-}
-
-/* Transition the header so it slides to the top nicely */
+/* Header Styling */
 .header {
+  position: absolute; /* Initial positioning */
+  top: -40px;
+  left: -20px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+  height: 60px; /* Fixed height */
   transition: all 0.5s ease-in-out;
 }
 
-/* When the page is in "chat mode", we can style or hide certain elements */
-.chat-active .main-content,
-.chat-active .icon-section {
-  opacity: 0;
-  pointer-events: none; /* So you cannot click on hidden elements */
+.header img.logo {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Main Content Styling */
+.main-content {
+  margin-left: -20px;
+  text-align: center;
+  transition: all 0.5s ease-in-out;
+}
+
+.main-content h1 {
+  font-size: 7.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 250px;
+  margin-bottom: 20px;
+  color: #0070c9;
   transition: opacity 0.5s ease-in-out;
 }
 
-/* We might move the paragraph and logo differently in chat mode */
-.chat-active .header {
-  position: fixed;    /* pinned at the top */
-  top: 0;
-  width: 100%;
+.main-content p {
+  font-size: 2.6rem;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #0070c9;
+  margin-bottom: 100px;
+  margin-top: 50px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.icon-section {
+  padding-bottom: 50px;
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: flex-start; /* left align items in the header */
-  gap: 20px;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  max-width: none;
+  max-height: none;
+  overflow: visible;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.icon-section img.icon {
+  position: absolute;
+  top: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 350px;
+  height: 350px;
+  object-fit: contain;
+  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Button Styling */
+.sign-in-button {
+  background-color: #0070c9;
+  color: #ffffff;
+  border-radius: 30px;
+  padding: 10px 40px;
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.5s ease-in-out;
+  margin-top: 20px;
+}
+
+.sign-in-button:hover {
+  background-color: #005fa3;
+  transform: scale(1.05);
+}
+
+/* Transition Styles */
+body.chat-active {
+  display: block; /* Override flex layout */
+}
+
+body.chat-active .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   padding: 10px 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   z-index: 1000;
-  background: #f9f9f9; /* optionally add a background */
+  height: 60px;
+}
+
+body.chat-active .main-content {
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}
+
+body.chat-active .icon-section,
+body.chat-active .main-content h1,
+body.chat-active .main-content p,
+body.chat-active .sign-in-button {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Chatbot Iframe Styling */
+.chatbot-iframe {
+  position: absolute;
+  top: 60px; /* Match header height */
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+  border: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .header {
+      height: 50px;
+      padding: 10px;
+  }
+
+  .chatbot-iframe {
+      top: 50px;
+      height: calc(100vh - 50px);
+  }
+
+  .main-content h1 {
+      font-size: 4rem;
+  }
+
+  .main-content p {
+      font-size: 1.6rem;
+  }
+
+  .sign-in-button {
+      font-size: 1.4rem;
+      padding: 8px 30px;
+  }
 }
