@@ -76,7 +76,7 @@ body {
 /* Title styling */
 .main-title {
   position: absolute;
-  top: calc(48%); /* Adjusted position */
+  top: calc(53%); /* Adjusted position */
   left: 50%;
   transform: translateX(-50%);
   font-size: 4rem;
@@ -91,7 +91,7 @@ body {
 /* Tagline styling */
 .main-tagline {
   position: absolute;
-  top: calc(48% + 80px); /* Adjusted to maintain spacing with title */
+  top: calc(53% + 80px); /* Adjusted to maintain spacing with title */
   left: 50%;
   transform: translateX(-50%);
   font-size: 1.5rem;
