@@ -22,12 +22,6 @@
       chatbotContainer.title = "DataNXT Chatbot"; // Accessibility
       chatbotContainer.setAttribute('aria-label', 'Chat with DataNXT support'); // Accessibility
       document.body.appendChild(chatbotContainer);
-
-      // Optional: Scroll to top smoothly
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
     }
 
     function closeChatbot() {
@@ -57,20 +51,26 @@
 </head>
 <body>
   <header class="header">
-    <img src="DataNXT_logo_raw.png" alt="DataNXT Logo" class="logo" onclick="toggleChatbot()">
+    <!-- Header Logo: Initially visible, fades out on chat activation -->
+    <img src="DataNXT_logo_raw.png" alt="DataNXT Logo" class="header-logo" onclick="toggleChatbot()">
+    
+    <!-- Header Title and Tagline: Initially hidden, fade in on chat activation -->
     <h1 class="header-title">DataNXT</h1>
     <p class="header-tagline">The best place for financial analysis, fast, smart, and reliable.</p>
-    <!-- Optional: Close Button -->
-    <!-- <button class="close-chatbot" onclick="closeChatbot()">✖</button> -->
   </header>
 
   <div class="container">
     <main class="main-content">
-      <div class="icon-section">
-        <img src="DataNXT_icon_raw.png" alt="15x Improvement" class="icon">
-      </div>
+      <!-- Main Logo: Initially centered, moves to header position on chat activation -->
+      <img src="DataNXT_icon_raw.png" alt="15x Improvement" class="main-logo">
+      
+      <!-- Main Title: Fades out on chat activation -->
       <h1 class="main-title">DataNXT</h1>
+      
+      <!-- "Try Now" Button: Fades out on chat activation -->
       <button class="sign-in-button" onclick="loadChatbot()">Try Now</button>
+      
+      <!-- Main Tagline: Fades out on chat activation -->
       <p class="main-tagline">The best place for financial analysis, fast, smart, and reliable.</p>
     </main>
   </div>

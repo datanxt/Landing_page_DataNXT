@@ -31,26 +31,30 @@ body {
   transition: all 0.5s ease-in-out;
 }
 
-.header .logo {
+.header .header-logo {
   width: 100px;
   height: auto;
   cursor: pointer; /* Indicate it's clickable */
-  transition: all 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .header-title,
 .header-tagline {
   opacity: 0;
   transform: translateY(-20px);
-  transition: all 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
   position: absolute;
   left: 120px; /* Position next to the logo */
 }
 
+body.chat-active .header-logo {
+  opacity: 0; /* Fade out the header logo */
+}
+
 body.chat-active .header-title,
 body.chat-active .header-tagline {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1; /* Fade in title and tagline */
+  transform: translateY(0); /* Move into place */
 }
 
 /* Container and Main Content Styling */
@@ -59,25 +63,36 @@ body.chat-active .header-tagline {
   max-width: 800px;
   text-align: center;
   transition: all 0.5s ease-in-out;
+  position: relative; /* For positioning main-logo */
 }
 
 .main-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: all 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  position: relative;
 }
 
-.icon-section {
-  transition: all 0.5s ease-in-out;
-}
-
-.icon-section .icon {
+.main-logo {
+  position: absolute; /* Absolute positioning for animation */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the logo */
   width: 350px;
   height: 350px;
   object-fit: contain;
   filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
   transition: all 0.5s ease-in-out;
+  z-index: 5; /* Ensure it's above main content */
+}
+
+body.chat-active .main-logo {
+  top: 20px; /* Move to header's top position */
+  left: 20px;
+  transform: translate(0, 0); /* Align with header's position */
+  width: 100px; /* Resize the logo */
+  height: 100px;
 }
 
 .main-title {
@@ -87,7 +102,12 @@ body.chat-active .header-tagline {
   margin-top: 50px;
   margin-bottom: 20px;
   color: #0070c9;
-  transition: all 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+body.chat-active .main-title {
+  opacity: 0; /* Fade out the main title */
+  transform: translateY(-20px);
 }
 
 .main-tagline {
@@ -99,7 +119,12 @@ body.chat-active .header-tagline {
   margin-top: 20px;
   max-width: 600px;
   text-align: center;
-  transition: all 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+body.chat-active .main-tagline {
+  opacity: 0; /* Fade out the main tagline */
+  transform: translateY(-20px);
 }
 
 .sign-in-button {
@@ -112,10 +137,16 @@ body.chat-active .header-tagline {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.5s ease-in-out;
   margin-top: 20px;
+  z-index: 5; /* Ensure it's above main content */
+}
+
+body.chat-active .sign-in-button {
+  opacity: 0; /* Fade out the button */
+  pointer-events: none; /* Disable button interactions */
 }
 
 .sign-in-button:hover {
-  background-color: #005fa3;
+  background-color: #005fa3; /* Darker shade on hover */
   transform: scale(1.05);
 }
 
@@ -130,7 +161,7 @@ body.chat-active .header-tagline {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-  z-index: 5;
+  z-index: 4; /* Below main-logo */
 }
 
 body.chat-active .chatbot-iframe {
@@ -145,19 +176,6 @@ body.chat-active .main-content {
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
-body.chat-active .icon-section {
-  opacity: 0;
-  transform: translateY(-50px);
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-}
-
-body.chat-active .main-title,
-body.chat-active .main-tagline {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-}
-
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .header {
@@ -165,7 +183,7 @@ body.chat-active .main-tagline {
       left: 10px;
   }
 
-  .header .logo {
+  .header .header-logo {
       width: 80px;
   }
 
@@ -175,6 +193,18 @@ body.chat-active .main-tagline {
 
   .header-tagline {
       font-size: 1rem;
+  }
+
+  .main-logo {
+      width: 250px;
+      height: 250px;
+  }
+
+  body.chat-active .main-logo {
+      top: 10px;
+      left: 10px;
+      width: 80px;
+      height: 80px;
   }
 
   .main-title {
@@ -188,11 +218,6 @@ body.chat-active .main-tagline {
   .sign-in-button {
       font-size: 1.4rem;
       padding: 8px 30px;
-  }
-
-  .icon-section .icon {
-      width: 250px;
-      height: 250px;
   }
 
   .chatbot-iframe {
