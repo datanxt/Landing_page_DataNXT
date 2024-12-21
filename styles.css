@@ -106,10 +106,10 @@ body {
   font-size: 0.9rem;
 } 
 
-/* Adjust button position */
+/* Button styling: Move directly below the logo */
 .sign-in-button {
   position: absolute;
-  top: calc(50% + 140px); /* Place it closer to the logo */
+  top: calc(50% + 130px); /* Adjust this value to place it right below the logo */
   left: 50%;
   transform: translateX(-50%);
   background-color: #0070c9;
