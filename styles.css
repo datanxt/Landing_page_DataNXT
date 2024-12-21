@@ -112,18 +112,14 @@ body {
   height: 60px;
 }
 
-
-
 .main-title.move-to-header-title {
   position: fixed;
   top: 15px;
   left: 100px;
   transform: none;
   font-size: 1.8rem;
-  content: "DataNXT Equity"; /* This won't work directly - see JavaScript below */
+  /* Removed invalid 'content' property */
 }
-
-
 
 .main-tagline.move-to-header-tagline {
   position: fixed;
@@ -132,10 +128,6 @@ body {
   transform: none;
   font-size: 0.9rem;
 } 
-
-
-
-
 
 /* Chatbot iframe */
 .chatbot-iframe {
@@ -154,16 +146,21 @@ body.chat-active .chatbot-iframe {
   opacity: 1;
 }
 
-/* When chatbot is active: logo becomes clickable */
-body.chat-active .main-logo {
-  cursor: pointer;
-  pointer-events: auto;
-}
-
 /* Force hardware acceleration */
 .main-logo,
 .main-title,
 .main-tagline {
   will-change: transform, width, height, font-size;
   backface-visibility: hidden;
+}
+
+/* Make logo clickable only when chatbot is active */
+.main-logo {
+  cursor: default;
+  pointer-events: none;
+}
+
+body.chat-active .main-logo {
+  cursor: pointer;
+  pointer-events: auto;
 }

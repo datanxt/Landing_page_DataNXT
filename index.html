@@ -5,6 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DataNXT</title>
   <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <div class="header-left"></div>
+    </div>
+  </header>
+  
+  <div class="container">
+    <main class="main-content">
+      <!-- Logo -->
+      <img src="DataNXT_icon_raw.png" alt="DataNXT Logo" class="main-logo">
+    
+      <!-- Button -->
+      <button class="sign-in-button">Try Now</button>
+    
+      <!-- Title -->
+      <h1 class="main-title">DataNXT</h1>
+    
+      <!-- Tagline -->
+      <p class="main-tagline">The best place for financial analysis, fast, smart, and reliable.</p>
+    </main>
+  </div>
+  
   <script>
     function loadChatbot() {
       // Add the chat-active class to body
@@ -83,44 +107,12 @@
         }, 500);
       }
     }
-  
-    // Function to handle clicking on the "Try Now" button
-    function toggleChatbot() {
-      if (document.body.classList.contains('chat-active')) {
-        closeChatbot();
-      } else {
-        loadChatbot();
-      }
-    }
-  
+
     // Add event listener to "Try Now" button after DOM loads
     document.addEventListener('DOMContentLoaded', () => {
       const tryNowBtn = document.querySelector('.sign-in-button');
       tryNowBtn.addEventListener('click', loadChatbot);
     });
-  </script>  
-</head>
-<body>
-  <header class="header">
-    <div class="header-content">
-      <div class="header-left"></div>
-    </div>
-  </header>
-  
-  <div class="container">
-    <main class="main-content">
-      <!-- Logo -->
-      <img src="DataNXT_icon_raw.png" alt="DataNXT Logo" class="main-logo">
-    
-      <!-- Button moved here -->
-      <button class="sign-in-button" onclick="loadChatbot()">Try Now</button>
-    
-      <!-- Title -->
-      <h1 class="main-title">DataNXT</h1>
-    
-      <!-- Tagline -->
-      <p class="main-tagline">The best place for financial analysis, fast, smart, and reliable.</p>
-    </main>
-  </div>
+  </script>
 </body>
 </html>
