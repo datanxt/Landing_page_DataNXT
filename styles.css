@@ -20,9 +20,8 @@ body {
 /* Header Styling */
 .header {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 20px;
+  align-items: center; /* Vertically align items */
+  padding: 10px 20px;
   height: 80px;
   position: fixed;
   top: 0;
@@ -55,14 +54,6 @@ body {
   z-index: 20; /* Ensure above header */
 }
 
-.move-to-header {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  transform: translate(0, 0);
-  width: 60px;
-  height: 60px;
-}
 
 .main-title {
   font-size: 4rem;
@@ -73,14 +64,6 @@ body {
   z-index: 20; /* Ensure above header */
 }
 
-.move-to-header-title {
-  position: fixed;
-  top: 25px;
-  left: 100px;
-  font-size: 1.8rem;
-  transform: translate(0, 0);
-  opacity: 1;
-}
 
 .main-tagline {
   font-size: 1.5rem;
@@ -95,14 +78,6 @@ body {
   z-index: 20; /* Ensure above header */
 }
 
-.move-to-header-tagline {
-  position: fixed;
-  top: 50px;
-  left: 120px;
-  font-size: 1rem;
-  transform: translate(0, 0);
-  opacity: 1;
-}
 
 .sign-in-button {
   background-color: #0070c9;
@@ -134,4 +109,54 @@ body.chat-active .sign-in-button {
 
 body.chat-active .chatbot-iframe {
   opacity: 1;
+}
+
+
+.header-left {
+  display: flex;
+  align-items: center; /* Align logo vertically */
+}
+
+.main-logo {
+  width: 60px; /* Adjust logo size */
+  height: 60px;
+  margin-right: 15px; /* Add spacing between logo and text */
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column; /* Stack name and motto vertically */
+  justify-content: center;
+}
+
+.main-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0070c9;
+  margin-bottom: 5px; /* Add space between name and motto */
+}
+
+.header-tagline {
+  font-size: 1rem;
+  color: #0070c9;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Transitions for Smooth Morphing */
+.move-to-header {
+  position: fixed;
+  top: 10px; /* Align with header */
+  left: 20px; /* Keep logo on the left */
+}
+
+.move-to-header-title {
+  position: fixed;
+  top: 15px; /* Place name above the motto */
+  left: 100px; /* Align name and motto to the right of the logo */
+}
+
+.move-to-header-tagline {
+  position: fixed;
+  top: 40px; /* Place motto below the name */
+  left: 100px; /* Align with the name */
 }
