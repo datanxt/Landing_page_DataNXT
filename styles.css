@@ -1,3 +1,33 @@
+/* --------------------------------------------------------------------- */
+/* Small Fixed Icon in the Upper Left Corner                             */
+/* --------------------------------------------------------------------- */
+#dataNXTIcon {
+  position: fixed;           /* Remains in the viewport regardless of scroll */
+  top: 20px;                /* Vertical offset */
+  left: 20px;               /* Horizontal offset */
+  width: 50px;              /* Fixed small width */
+  height: auto;             /* Maintain aspect ratio */
+  z-index: 15;              /* Ensure the icon stays above other content */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Optional media queries for slight adjustments on smaller screens */
+@media (max-width: 768px) {
+  #dataNXTIcon {
+    width: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  #dataNXTIcon {
+    width: 40px;
+  }
+}
+
+/* --------------------------------------------------------------------- */
+/* Existing Styles Below                                                 */
+/* --------------------------------------------------------------------- */
+
 /* Reset and basic styles remain the same */
 * {
   margin: 0;
@@ -91,7 +121,6 @@ body {
   text-align: center;
 }
 
-
 /* Tagline styling */
 .main-tagline {
   position: absolute;
@@ -149,7 +178,6 @@ body.chat-active .chatbot-iframe {
   opacity: 1;
 }
 
-
 /* Make logo clickable only when chatbot is active */
 body.chat-active .main-logo {
   cursor: pointer;
@@ -161,6 +189,7 @@ body.chat-active .header {
   opacity: 1;
   visibility: visible;
 }
+
 /* Force hardware acceleration */
 .main-logo,
 .main-title,
