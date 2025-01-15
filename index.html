@@ -6,6 +6,36 @@
   <title>DataNXT</title>
   <link rel="icon" href="datanxt.ico" type="image/x-icon">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    #dataNXTIcon {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      z-index: 1000;
+      transition: opacity 0.3s ease-out;
+    }
+
+    .main-logo {
+      width: 30vw;
+      max-width: 300px;
+      min-width: 150px;
+      height: auto;
+      transition: all 0.5s ease;
+    }
+
+    #dataNXTIcon.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      .main-logo {
+        width: 50vw;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -46,6 +76,10 @@
       const mainTitle = document.querySelector('.main-title');
       const mainTagline = document.querySelector('.main-tagline');
       const tryNowBtn = document.querySelector('.sign-in-button');
+      const dataNXTIcon = document.getElementById('dataNXTIcon');
+      
+      // Hide the corner logo
+      dataNXTIcon.classList.add('hidden');
       
       // Add the morphing classes
       requestAnimationFrame(() => {
@@ -88,6 +122,10 @@
       const mainTagline = document.querySelector('.main-tagline');
       const tryNowBtn = document.querySelector('.sign-in-button');
       const chatbotIframe = document.querySelector('.chatbot-iframe');
+      const dataNXTIcon = document.getElementById('dataNXTIcon');
+      
+      // Show the corner logo
+      dataNXTIcon.classList.remove('hidden');
       
       // Remove morphing classes
       mainLogo.classList.remove('move-to-header');
