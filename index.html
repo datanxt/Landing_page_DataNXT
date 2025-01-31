@@ -1,141 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataNXT Prompt</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #ffffff;
-            padding: 20px;
-            color: #333;
-        }
-        #container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        #prompt-box {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            background-color: #0056b3;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        button:hover {
-            background-color: #003d80;
-        }
-        #q-smart {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 20px 0;
-            padding: 10px;
-            border: 1px solid #ccc;
-            background: #eef;
-            border-radius: 5px;
-            display: inline-block;
-            width: 100%;
-        }
-        .answer-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        .answer-box {
-            width: 48%;
-            padding: 15px;
-            border: 1px solid #ccc;
-            background: #fff;
-            min-height: 100px;
-            border-radius: 5px;
-        }
-        @media (max-width: 600px) {
-            .answer-container {
-                flex-direction: column;
-            }
-            .answer-box {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DataNXT Prompt</title>
+  <style>
+    /* Basic CSS Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: #fff;
+      color: #333;
+      text-align: center;
+      margin: 0;
+      padding: 40px 0; /* add vertical breathing room */
+    }
+
+    /* Main container for the prompt UI */
+    #container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fafafa;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 30px;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: #222;
+    }
+
+    #prompt-box {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background-color: #0056b3;
+      color: #fff;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+    button:hover {
+      background-color: #003d80;
+      transform: translateY(-1px);
+    }
+
+    /* The box displaying the question/prompt being processed */
+    #q-smart {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 30px 0 15px;
+      padding: 10px;
+      border-radius: 6px;
+      background: #eef;
+      border: 1px solid #ccc;
+      width: 100%;
+      word-break: break-word;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 25px 0 10px;
+      color: #444;
+    }
+
+    .answer-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap; /* allows wrapping on smaller screens */
+    }
+
+    .answer-box {
+      flex: 1;
+      min-width: 48%;
+      background: #fff;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      padding: 15px;
+      min-height: 100px;
+      text-align: left;
+      overflow-wrap: break-word;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .answer-box {
+        min-width: 100% !important;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div id="container">
-        <h2>"Your question here"</h2>
-        <input type="text" id="prompt-box" placeholder="Enter your prompt...">
-        <br>
-        <button onclick="sendToDatanxt()">Try it</button>
-        
-        <div id="q-smart">DataNXT Smart Output</div>
-        
-        <h3>DataNXT Prompt</h3>
-        <div class="answer-container">
-            <div class="answer-box" id="answer-datanxt">Answer with DataNXT Prompt</div>
-            <div class="answer-box" id="answer-openai">Answer without DataNXT Prompt</div>
-        </div>
+  <div id="container">
+    <h2>Your question here</h2>
+    <input type="text" id="prompt-box" placeholder="Enter your prompt..." />
+    <br />
+    <button onclick="sendToDatanxt()">Try it</button>
+    
+    <div id="q-smart">DataNXT Smart Output</div>
+    
+    <h3>DataNXT Prompt</h3>
+    <div class="answer-container">
+      <div class="answer-box" id="answer-datanxt">
+        Answer with DataNXT Prompt
+      </div>
+      <div class="answer-box" id="answer-openai">
+        Answer without DataNXT Prompt
+      </div>
     </div>
+  </div>
 
-    <script>
+  <script>
     async function sendToDatanxt() {
-        const prompt = document.getElementById("prompt-box").value;
-        if (!prompt) {
-            alert("Please enter a prompt!");
-            return;
-        }
+      const prompt = document.getElementById("prompt-box").value;
+      if (!prompt) {
+        alert("Please enter a prompt!");
+        return;
+      }
 
-        // Display loading text
-        document.getElementById("q-smart").innerText = "Processing...";
-        document.getElementById("answer-datanxt").innerText = "Waiting for DataNXT response...";
-        document.getElementById("answer-openai").innerText = "Waiting for OpenAI response...";
+      // Display loading text
+      document.getElementById("q-smart").innerText = "Processing...";
+      document.getElementById("answer-datanxt").innerText = "Waiting for DataNXT response...";
+      document.getElementById("answer-openai").innerText = "Waiting for OpenAI response...";
 
-        try {
-            // Call OpenAI API
-            const openaiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer YOUR_OPENAI_API_KEY"
-                },
-                body: JSON.stringify({
-                    model: "gpt-4",
-                    messages: [{ role: "user", content: prompt }],
-                    max_tokens: 200
-                })
-            });
+      try {
+        // Call OpenAI API
+        const openaiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer YOUR_OPENAI_API_KEY"
+          },
+          body: JSON.stringify({
+            model: "gpt-4",
+            messages: [{ role: "user", content: prompt }],
+            max_tokens: 200
+          })
+        });
 
-            const openaiData = await openaiResponse.json();
-            const openaiAnswer = openaiData.choices[0].message.content;
+        const openaiData = await openaiResponse.json();
+        const openaiAnswer = openaiData.choices[0].message.content;
 
-            // Simulating a DataNXT response
-            const datanxtAnswer = `Generated Answer from DataNXT for "${prompt}"`;
+        // Simulating a DataNXT response
+        const datanxtAnswer = `Generated Answer from DataNXT for "${prompt}"`;
 
-            // Updating UI with results
-            document.getElementById("q-smart").innerText = "Q-Smart: " + prompt;
-            document.getElementById("answer-datanxt").innerText = datanxtAnswer;
-            document.getElementById("answer-openai").innerText = openaiAnswer;
-
-        } catch (error) {
-            console.error("Error:", error);
-            document.getElementById("answer-openai").innerText = "Error fetching response.";
-        }
+        // Updating UI with results
+        document.getElementById("q-smart").innerText = "Q-Smart: " + prompt;
+        document.getElementById("answer-datanxt").innerText = datanxtAnswer;
+        document.getElementById("answer-openai").innerText = openaiAnswer;
+      } catch (error) {
+        console.error("Error:", error);
+        document.getElementById("answer-openai").innerText = "Error fetching response.";
+      }
     }
-</script>
+  </script>
 </body>
 </html>
