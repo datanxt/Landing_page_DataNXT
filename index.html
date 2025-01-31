@@ -8,13 +8,22 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #f7f0eb;
+            background-color: #ffffff;
             padding: 20px;
+            color: #333;
+        }
+        #container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         #prompt-box {
-            width: 80%;
-            padding: 10px;
-            border: 2px solid #a855f7;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 18px;
             margin-bottom: 10px;
@@ -23,46 +32,64 @@
             padding: 10px 20px;
             font-size: 16px;
             border: none;
-            background-color: black;
+            background-color: #0056b3;
             color: white;
-            border-radius: 20px;
+            border-radius: 5px;
             cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #003d80;
         }
         #q-smart {
             font-size: 20px;
             font-weight: bold;
             margin: 20px 0;
             padding: 10px;
-            border: 1px solid black;
+            border: 1px solid #ccc;
+            background: #eef;
+            border-radius: 5px;
             display: inline-block;
-            min-width: 50%;
+            width: 100%;
         }
         .answer-container {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            justify-content: space-between;
             margin-top: 20px;
         }
         .answer-box {
-            width: 40%;
+            width: 48%;
             padding: 15px;
-            border: 1px solid black;
+            border: 1px solid #ccc;
+            background: #fff;
             min-height: 100px;
+            border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            .answer-container {
+                flex-direction: column;
+            }
+            .answer-box {
+                width: 100%;
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <h2>"Your question here"</h2>
-    <input type="text" id="prompt-box" placeholder="Enter your prompt...">
-    <br>
-    <button onclick="sendToDatanxt()">Try it</button>
-    
-    <div id="q-smart">DataNXT Smart Output</div>
-    
-    <h3>DataNXT Prompt</h3>
-    <div class="answer-container">
-        <div class="answer-box" id="answer-datanxt">Answer with DataNXT Prompt</div>
-        <div class="answer-box" id="answer-openai">Answer without DataNXT Prompt</div>
+    <div id="container">
+        <h2>"Your question here"</h2>
+        <input type="text" id="prompt-box" placeholder="Enter your prompt...">
+        <br>
+        <button onclick="sendToDatanxt()">Try it</button>
+        
+        <div id="q-smart">DataNXT Smart Output</div>
+        
+        <h3>DataNXT Prompt</h3>
+        <div class="answer-container">
+            <div class="answer-box" id="answer-datanxt">Answer with DataNXT Prompt</div>
+            <div class="answer-box" id="answer-openai">Answer without DataNXT Prompt</div>
+        </div>
     </div>
 
     <script>
