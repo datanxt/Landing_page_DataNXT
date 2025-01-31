@@ -127,8 +127,7 @@
   </div>
 
   <script>
-    // If you have a "last question" context, store it globally or pass it in.
-    // For this example, let's assume it’s optional:
+    // Optional: Keep track of "last question" if needed
     let lastQuestion = "";
 
     async function sendToDatanxt() {
@@ -137,75 +136,57 @@
         alert("Please enter a prompt!");
         return;
       }
+      
+      // Temporarily show a notification instead of calling any API
+      alert("This feature is currently under review and not yet operational. Please check back soon!");
+      
+      // If you'd like to keep the UI updates, you can still show a placeholder:
+      document.getElementById("q-smart").innerText = "Under Review: " + prompt;
+      document.getElementById("answer-datanxt").innerText = "DataNXT Agent is not available right now.";
+      document.getElementById("answer-openai").innerText = "OpenAI Agent is not available right now.";
 
-      // Display "loading" text
-      document.getElementById("q-smart").innerText = "Processing...";
-      document.getElementById("answer-datanxt").innerText = "Waiting for Azure assistant response...";
-      document.getElementById("answer-openai").innerText = "Waiting for OpenAI response...";
-
+      // Below is the future code you can re-enable when your API is ready:
+      /*
       try {
-        //-------------------------------------------------------------------
-        // 1) Call OpenAI
-        //-------------------------------------------------------------------
-        const openaiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
+        // 1) Call DataNXT Agent
+        const datanxtResponse = await fetch("https://YOUR_AZURE_FUNCTION_URL/api/assistant", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            // Replace with your real key (best practice is to do this server-side)
-            "Authorization": "Bearer YOUR_OPENAI_API_KEY"
-          },
-          body: JSON.stringify({
-            model: "gpt-4o-mini",
-            messages: [{ role: "user", content: prompt }],
-            max_tokens: 200
-          })
-        });
-        const openaiData = await openaiResponse.json();
-
-        // Defensive checks in case of error
-        let openaiAnswer = "Error: No response.";
-        if (openaiData?.choices && openaiData.choices.length > 0) {
-          openaiAnswer = openaiData.choices[0].message.content;
-        }
-
-        //-------------------------------------------------------------------
-        // 2) Call Azure Assistant
-        //
-        // This call is simulating your Python code (advanced_query_generation).
-        // We’ll assume you have an endpoint that takes 'question' + 'last_question'
-        // and returns the assistant's text.
-        //-------------------------------------------------------------------
-        const azureResponse = await fetch("https://YOUR_AZURE_FUNCTION_URL/api/assistant", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-            // Possibly other auth headers if your Azure requires it
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             question: prompt,
-            last_question: lastQuestion
+            last_question: lastQuestion,
+            assistant_id: "asst_GWSUFfeVsOBwdBO06w0O30Hv"
           })
         });
-        const azureData = await azureResponse.json();
+        const datanxtData = await datanxtResponse.json();
+        const datanxtAnswer = datanxtData.assistant_answer || "No response from DataNXT Agent";
 
-        // Suppose your Azure function returns something like { "assistant_answer": "Some text" }
-        const datanxtAnswer = azureData.assistant_answer || "No response from Azure assistant.";
+        // 2) Call OpenAI Agent
+        const openaiAgentResponse = await fetch("https://YOUR_AZURE_FUNCTION_URL/api/assistant", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            question: prompt,
+            last_question: lastQuestion,
+            assistant_id: "asst_4Fs8NcaqETBJNTgj4znCLMBN"
+          })
+        });
+        const openaiAgentData = await openaiAgentResponse.json();
+        const openaiAgentAnswer = openaiAgentData.assistant_answer || "No response from OpenAI Agent";
 
-        //-------------------------------------------------------------------
-        // Update the UI with results
-        //-------------------------------------------------------------------
+        // Update the UI
         document.getElementById("q-smart").innerText = "Q-Smart: " + prompt;
         document.getElementById("answer-datanxt").innerText = datanxtAnswer;
-        document.getElementById("answer-openai").innerText = openaiAnswer;
+        document.getElementById("answer-openai").innerText = openaiAgentAnswer;
 
-        // For next time, we can store the current question as the last question
+        // Store this prompt as lastQuestion
         lastQuestion = prompt;
-
       } catch (error) {
         console.error("Error:", error);
-        document.getElementById("answer-openai").innerText = "Error fetching response.";
-        document.getElementById("answer-datanxt").innerText = "Error calling Azure Assistant.";
+        document.getElementById("answer-datanxt").innerText = "Error calling DataNXT Agent.";
+        document.getElementById("answer-openai").innerText = "Error calling OpenAI Agent.";
       }
+      */
     }
   </script>
 </body>
