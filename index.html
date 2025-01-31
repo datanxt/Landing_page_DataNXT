@@ -66,20 +66,49 @@
     </div>
 
     <script>
-        function sendToDatanxt() {
-            const prompt = document.getElementById("prompt-box").value;
-            if (!prompt) {
-                alert("Please enter a prompt!");
-                return;
-            }
-
-            // Simulate API call
-            setTimeout(() => {
-                document.getElementById("q-smart").innerText = "Q-Smart: " + prompt;
-                document.getElementById("answer-datanxt").innerText = "Generated Answer from DataNXT";
-                document.getElementById("answer-openai").innerText = "Generated Answer from OpenAI";
-            }, 1000);
+    async function sendToDatanxt() {
+        const prompt = document.getElementById("prompt-box").value;
+        if (!prompt) {
+            alert("Please enter a prompt!");
+            return;
         }
-    </script>
+
+        // Display loading text
+        document.getElementById("q-smart").innerText = "Processing...";
+        document.getElementById("answer-datanxt").innerText = "Waiting for DataNXT response...";
+        document.getElementById("answer-openai").innerText = "Waiting for OpenAI response...";
+
+        try {
+            // Call OpenAI API
+            const openaiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer YOUR_OPENAI_API_KEY"
+                },
+                body: JSON.stringify({
+                    model: "gpt-4",
+                    messages: [{ role: "user", content: prompt }],
+                    max_tokens: 200
+                })
+            });
+
+            const openaiData = await openaiResponse.json();
+            const openaiAnswer = openaiData.choices[0].message.content;
+
+            // Simulating a DataNXT response
+            const datanxtAnswer = `Generated Answer from DataNXT for "${prompt}"`;
+
+            // Updating UI with results
+            document.getElementById("q-smart").innerText = "Q-Smart: " + prompt;
+            document.getElementById("answer-datanxt").innerText = datanxtAnswer;
+            document.getElementById("answer-openai").innerText = openaiAnswer;
+
+        } catch (error) {
+            console.error("Error:", error);
+            document.getElementById("answer-openai").innerText = "Error fetching response.";
+        }
+    }
+</script>
 </body>
 </html>
