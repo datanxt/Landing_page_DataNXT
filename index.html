@@ -1,163 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DataNXT</title>
-  <link rel="icon" href="datanxt.ico" type="image/x-icon">
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    #dataNXTIcon {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      width: 50px;
-      height: 50px;
-      z-index: 1000;
-      transition: opacity 0.3s ease-out;
-    }
-
-    .main-logo {
-      width: 30vw;
-      max-width: 300px;
-      min-width: auto;
-      height: auto;
-      transition: all 0.5s ease;
-    }
-
-    #dataNXTIcon.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    @media (max-width: 768px) {
-      .main-logo {
-        width: 50vw;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataNXT Prompt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f7f0eb;
+            padding: 20px;
+        }
+        #prompt-box {
+            width: 80%;
+            padding: 10px;
+            border: 2px solid #a855f7;
+            border-radius: 5px;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: black;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        #q-smart {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid black;
+            display: inline-block;
+            min-width: 50%;
+        }
+        .answer-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .answer-box {
+            width: 40%;
+            padding: 15px;
+            border: 1px solid black;
+            min-height: 100px;
+        }
+    </style>
 </head>
 <body>
-  <header class="header">
-    <div class="header-content">
-      <div class="header-left"></div>
+    <h2>"Your question here"</h2>
+    <input type="text" id="prompt-box" placeholder="Enter your prompt...">
+    <br>
+    <button onclick="sendToDatanxt()">Try it</button>
+    
+    <div id="q-smart">DataNXT Smart Output</div>
+    
+    <h3>DataNXT Prompt</h3>
+    <div class="answer-container">
+        <div class="answer-box" id="answer-datanxt">Answer with DataNXT Prompt</div>
+        <div class="answer-box" id="answer-openai">Answer without DataNXT Prompt</div>
     </div>
-  </header>
-  
-  <!-- Small icon stays fixed in the upper left corner -->
-  <img id="dataNXTIcon"
-       src="DataNXT_icon_raw.png"
-       srcset="DataNXT_icon_raw@2x.png 2x, DataNXT_icon_raw.png 1x"
-       alt="DataNXT Icon">
-  
-  <div class="container">
-    <main class="main-content">
-      <!-- Logo (centers on the page initially and animates on load) -->
-      <img src="DataNXT_icon_raw.png" alt="DataNXT Logo" class="main-logo">
-    
-      <!-- Button -->
-      <button class="sign-in-button">Try Now</button>
-    
-      <!-- Title -->
-      <h1 class="main-title">DataNXT</h1>
-    
-      <!-- Tagline -->
-      <p class="main-tagline">Transform Data into Insight.</p>
-    </main>
-  </div>
-  
-  <script>
-    function loadChatbot() {
-      // Add the chat-active class to body
-      document.body.classList.add('chat-active');
-      
-      // Get all the elements we need to animate
-      const mainLogo = document.querySelector('.main-logo');
-      const mainTitle = document.querySelector('.main-title');
-      const mainTagline = document.querySelector('.main-tagline');
-      const tryNowBtn = document.querySelector('.sign-in-button');
-      const dataNXTIcon = document.getElementById('dataNXTIcon');
-      
-      // Hide the corner logo
-      dataNXTIcon.classList.add('hidden');
-      
-      // Add the morphing classes
-      requestAnimationFrame(() => {
-        mainLogo.classList.add('move-to-header');
-        mainTitle.classList.add('move-to-header-title');
-        mainTitle.textContent = 'DataNXT';
-        mainTagline.classList.add('move-to-header-tagline');
-      });
-      
-      // Hide the button
-      tryNowBtn.style.opacity = '0';
-      tryNowBtn.style.pointerEvents = 'none';
-      
-      // Add click event to logo to close chatbot
-      mainLogo.style.cursor = 'pointer';
-      mainLogo.addEventListener('click', closeChatbot);
-      
-      // Create and add the chatbot iframe after animation
-      setTimeout(() => {
-        const chatbotContainer = document.createElement('iframe');
-        chatbotContainer.src = "https://chat.datanxt.de";
-        chatbotContainer.classList.add('chatbot-iframe');
-        chatbotContainer.title = "DataNXT Equity";
-        chatbotContainer.setAttribute('aria-label', 'Chat with DataNXT support');
-        
-        // Add iframe to body
-        document.body.appendChild(chatbotContainer);
-        
-        // Make iframe visible after a short delay
-        setTimeout(() => {
-          chatbotContainer.style.opacity = '1';
-        }, 100);
-      }, 800); // Align timing with CSS transitions
-    }
-    
-    function closeChatbot() {
-      // Get elements
-      const mainLogo = document.querySelector('.main-logo');
-      const mainTitle = document.querySelector('.main-title');
-      const mainTagline = document.querySelector('.main-tagline');
-      const tryNowBtn = document.querySelector('.sign-in-button');
-      const chatbotIframe = document.querySelector('.chatbot-iframe');
-      const dataNXTIcon = document.getElementById('dataNXTIcon');
-      
-      // Show the corner logo
-      dataNXTIcon.classList.remove('hidden');
-      
-      // Remove morphing classes
-      mainLogo.classList.remove('move-to-header');
-      mainTitle.classList.remove('move-to-header-title');
-      mainTitle.textContent = 'DataNXT';
-      mainTagline.classList.remove('move-to-header-tagline');
-      
-      // Show button
-      tryNowBtn.style.opacity = '1';
-      tryNowBtn.style.pointerEvents = 'auto';
-      
-      // Remove chat-active class
-      document.body.classList.remove('chat-active');
-      
-      // Remove click event from logo
-      mainLogo.removeEventListener('click', closeChatbot);
-      mainLogo.style.cursor = 'default';
-      
-      // Remove iframe if it exists
-      if (chatbotIframe) {
-        chatbotIframe.style.opacity = '0';
-        setTimeout(() => {
-          chatbotIframe.remove();
-        }, 500);
-      }
-    }
 
-    // Add event listener to "Try Now" button after DOM loads
-    document.addEventListener('DOMContentLoaded', () => {
-      const tryNowBtn = document.querySelector('.sign-in-button');
-      tryNowBtn.addEventListener('click', loadChatbot);
-    });
-  </script>
+    <script>
+        function sendToDatanxt() {
+            const prompt = document.getElementById("prompt-box").value;
+            if (!prompt) {
+                alert("Please enter a prompt!");
+                return;
+            }
+
+            // Simulate API call
+            setTimeout(() => {
+                document.getElementById("q-smart").innerText = "Q-Smart: " + prompt;
+                document.getElementById("answer-datanxt").innerText = "Generated Answer from DataNXT";
+                document.getElementById("answer-openai").innerText = "Generated Answer from OpenAI";
+            }, 1000);
+        }
+    </script>
 </body>
 </html>
