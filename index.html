@@ -126,6 +126,13 @@
   </div>
 
   <script>
+    // Add event listener to trigger sendToDatanxt when Enter is pressed
+    document.getElementById("prompt-box").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault(); // Prevent form submission or other default behavior
+        sendToDatanxt();
+      }
+    });
     // Optional: Keep track of "last question" if needed
     let lastQuestion = "";
 
